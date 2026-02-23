@@ -1,0 +1,2 @@
+# PalindroneCheckerApp
+The palindrome checker
