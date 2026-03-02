@@ -1,8 +1,15 @@
-import java.util.Scanner;
+public class UseCase2PalindromeCheckerApp {
 
-public class PalindromeCheckerApp {
-    public static void main(String args[]) {
-        System.out.println("PalindromeChecker");
-        System.out.print("2 nd branch ");
+    public static void main(String[] args) {
+
+        // Hardcoded string literal
+        String word = "madam";
+
+        // Check if palindrome using conditional statement
+        if (word.equals(new StringBuilder(word).reverse().toString())) {
+            System.out.println("The word \"" + word + "\" is a Palindrome.");
+        } else {
+            System.out.println("The word \"" + word + "\" is NOT a Palindrome.");
+        }
     }
 }
