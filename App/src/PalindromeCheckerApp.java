@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
