@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 public class UseCase2PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -19,11 +21,18 @@ public class PalindromeCheckerApp {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("=== Palindrome Checker App (UC6 - Queue + Stack) ===");
         System.out.println("=== Palindrome Checker App (UC5 - Stack Based) ===");
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+            stack.push(ch);
+            queue.add(ch);
 
         for (int i = 0; i < input.length(); i++) {
             stack.push(input.charAt(i));
@@ -32,6 +41,7 @@ public class PalindromeCheckerApp {
         boolean isPalindrome = true;
 
         for (int i = 0; i < input.length(); i++) {
+            if (stack.pop() != queue.remove()) {
             char poppedChar = stack.pop();
             if (input.charAt(i) != poppedChar) {
                 isPalindrome = false;
