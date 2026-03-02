@@ -1,3 +1,5 @@
+import java.util.Scanner;
+import java.util.Stack;
 public class UseCase2PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -17,6 +19,27 @@ public class PalindromeCheckerApp {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("=== Palindrome Checker App (UC5 - Stack Based) ===");
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
+
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < input.length(); i++) {
+            char poppedChar = stack.pop();
+            if (input.charAt(i) != poppedChar) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
         System.out.println("=== Palindrome Checker App (UC4) ===");
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
