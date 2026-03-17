@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PalindromeCheckerApp {
+public class UseCase13PalindromeCheckerApp {
 
     public static boolean stackMethod(String input) {
         String normalized = input.replaceAll("\\s+", "").toLowerCase();
