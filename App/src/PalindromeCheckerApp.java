@@ -1,37 +1,68 @@
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class PalindromeCheckerApp {
 
+    public static boolean stackMethod(String input) {
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        Stack<Character> stack = new Stack<>();
+        for (char c : normalized.toCharArray())
+            stack.push(c);
+        for (char c : normalized.toCharArray())
+            if (c != stack.pop())
+                return false;
+        return true;
+    }
+
+    public static boolean dequeMethod(String input) {
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        Deque<Character> deque = new ArrayDeque<>();
+        for (char c : normalized.toCharArray())
+            deque.add(c);
+        while (deque.size() > 1) {
+            if (!deque.pollFirst().equals(deque.pollLast()))
+                return false;
+        }
+        return true;
+    }
+
+    public static boolean recursiveMethod(String str, int start, int end) {
+        if (start >= end)
+            return true;
+        if (str.charAt(start) != str.charAt(end))
+            return false;
+        return recursiveMethod(str, start + 1, end - 1);
+    }
+
+    public static boolean recursionWrapper(String input) {
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        return recursiveMethod(normalized, 0, normalized.length() - 1);
+    }
+
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("=== Palindrome Checker App (UC5 - Stack Based) ===");
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        Stack<Character> stack = new Stack<>();
+        long start, end;
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
+        start = System.nanoTime();
+        boolean stackResult = stackMethod(input);
+        end = System.nanoTime();
+        long stackTime = end - start;
 
-        boolean isPalindrome = true;
+        start = System.nanoTime();
+        boolean dequeResult = dequeMethod(input);
+        end = System.nanoTime();
+        long dequeTime = end - start;
 
-        for (int i = 0; i < input.length(); i++) {
-            char poppedChar = stack.pop();
-            if (input.charAt(i) != poppedChar) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        start = System.nanoTime();
+        boolean recursionResult = recursionWrapper(input);
+        end = System.nanoTime();
+        long recursionTime = end - start;
 
-        if (isPalindrome) {
-            System.out.println("Result: The given string is a Palindrome.");
-        } else {
-            System.out.println("Result: The given string is NOT a Palindrome.");
-        }
+        System.out.println("Stack Method: " + (stackResult ? "Palindrome" : "Not Palindrome") + " | Time: " + stackTime + " ns");
+        System.out.println("Deque Method: " + (dequeResult ? "Palindrome" : "Not Palindrome") + " | Time: " + dequeTime + " ns");
+        System.out.println("Recursion Method: " + (recursionResult ? "Palindrome" : "Not Palindrome") + " | Time: " + recursionTime + " ns");
 
         sc.close();
     }
