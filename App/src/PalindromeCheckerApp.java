@@ -47,7 +47,7 @@ class PalindromeService {
     }
 }
 
-public class PalindromeCheckerApp {
+public class UseCase12PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose Strategy: 1. Stack  2. Deque");
